@@ -25,7 +25,7 @@ class Player:
     def add_card(self, card):
         self.pack.append(card)
 
-    def show_player(self):
+    def show(self):
         print(f'name: {self.name}')
         for i in self.pack:
-            print(i.print_card())
+            i.__str__()

@@ -7,5 +7,5 @@ class Card:
         self.value = value
         self.suit = suit
 
-    def print_card(self):
-        return 'value: ' + str(self.value) + ', suit: ' + str(self.suit)
+    def __str__(self):
+        print('value: ' + str(self.value) + ', suit: ' + str(self.suit))
