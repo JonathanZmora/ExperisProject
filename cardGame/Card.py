@@ -8,4 +8,4 @@ class Card:
         self.suit = suit
 
     def print_card(self):
-        print(f'value: {self.value}, suit: {self.suit}')
+        return 'value: ' + str(self.value) + ', suit: ' + str(self.suit)
