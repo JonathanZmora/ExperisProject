@@ -14,7 +14,7 @@ class Player:
     def set_hand(self, deck):
         deck.shuffle()
         for i in range(self.num_of_cards):
-            self.pack[i] = deck.deal_one()
+            self.pack += [deck.deal_one()]
 
     def get_card(self):
         index = randint(0, len(self.pack) - 1)
@@ -25,7 +25,7 @@ class Player:
     def add_card(self, card):
         self.pack.append(card)
 
-    def show(self):
+    def show_player(self):
         print(f'name: {self.name}')
         for i in self.pack:
-            print(i.__str__())
+            print(i.print_card())

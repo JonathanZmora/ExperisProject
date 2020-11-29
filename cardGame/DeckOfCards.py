@@ -7,22 +7,22 @@ class DeckOfCards:
     def __init__(self):
         self.deck = []
         for i in range(1, 14):
-            self.deck += Card(i, "♦")
+            self.deck += [Card(i, "♦")]
 
         for i in range(1, 14):
-            self.deck += Card(i, "♠")
+            self.deck += [Card(i, "♠")]
 
         for i in range(1, 14):
-            self.deck += Card(i, "♥")
+            self.deck += [Card(i, "♥")]
 
         for i in range(1, 14):
-            self.deck += Card(i, "♣")
+            self.deck += [Card(i, "♣")]
 
     def shuffle(self):
         shuffle(self.deck)
 
     def deal_one(self):
-        index = randint(0, len(self.deck))
+        index = randint(0, len(self.deck) - 1)
         card = self.deck[index]
         del self.deck[index]
         return card
