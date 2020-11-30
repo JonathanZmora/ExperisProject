@@ -1,5 +1,3 @@
-from random import *
-
 
 class Card:
 
@@ -8,4 +6,11 @@ class Card:
         self.suit = suit
 
     def __str__(self):
-        print('value: ' + str(self.value) + ', suit: ' + str(self.suit))
+        if self.suit == 1:
+            return f'value: {self.value}, suit: ♦'
+        elif self.suit == 2:
+            return f'value: {self.value}, suit: ♠'
+        elif self.suit == 3:
+            return f'value: {self.value}, suit: ♥'
+        else:
+            return f'value: {self.value}, suit: ♣'

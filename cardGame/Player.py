@@ -26,6 +26,7 @@ class Player:
         self.pack.append(card)
 
     def show(self):
-        print(f'name: {self.name}')
+        print(f'player name: {self.name}\ncards in hand:')
         for i in self.pack:
-            i.__str__()
+            print(i.__str__())
+        print()
