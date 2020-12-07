@@ -5,7 +5,7 @@ from cardGame.DeckOfCards import DeckOfCards
 class CardGame:
 
     def new_game(self):
-        if not self.player1.pack == []:
+        if not self.player1.pack == [] or not self.player2.pack == []:
             print("Error, the game has already started")
         else:
             self.deck.shuffle()
@@ -25,3 +25,34 @@ class CardGame:
             return self.player2.name
         else:
             return 'None'
+
+    def play_round(self):
+        card1 = self.player1.get_card()
+        card2 = self.player2.get_card()
+        if card1.value > card2.value:
+            self.player2.add_card(card1)
+            self.player2.add_card(card2)
+            str1 = f'{self.player1.name} threw - {card1.__str__()}\n'
+            str2 = f'{self.player2.name} threw - {card2.__str__()}\nthe winner is {self.player1.name}'
+            return str1 + str2
+
+        elif card2.value > card1.value:
+            self.player1.add_card(card1)
+            self.player1.add_card(card2)
+            str1 = f'{self.player1.name} threw - {card1.__str__()}\n'
+            str2 = f'{self.player2.name} threw - {card2.__str__()}\nthe winner is {self.player2.name}'
+            return str1 + str2
+        else:
+            if card1.suit > card2.suit:
+                self.player2.add_card(card1)
+                self.player2.add_card(card2)
+                str1 = f'{self.player1.name} threw - {card1.__str__()}\n'
+                str2 = f'{self.player2.name} threw - {card2.__str__()}\nthe winner is {self.player1.name}'
+                return str1 + str2
+
+            else:
+                self.player1.add_card(card1)
+                self.player1.add_card(card2)
+                str1 = f'{self.player1.name} threw - {card1.__str__()}\n'
+                str2 = f'{self.player2.name} threw - {card2.__str__()}\nthe winner is {self.player2.name}'
+                return str1 + str2

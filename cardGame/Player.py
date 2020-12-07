@@ -1,5 +1,6 @@
 from cardGame.DeckOfCards import DeckOfCards
 from random import *
+from cardGame.Card import Card
 
 
 class Player:
@@ -12,9 +13,14 @@ class Player:
         self.pack = []
 
     def set_hand(self, deck):
-        deck.shuffle()
-        for i in range(self.num_of_cards):
-            self.pack += [deck.deal_one()]
+        if not type(deck) == DeckOfCards:
+            raise ValueError('the parameter is not a deck of cards')
+        elif not deck.deck:
+            raise ValueError('the parameter deck is an empty deck')
+        else:
+            deck.shuffle()
+            for i in range(self.num_of_cards):
+                self.pack += [deck.deal_one()]
 
     def get_card(self):
         index = randint(0, len(self.pack) - 1)
@@ -23,7 +29,10 @@ class Player:
         return card
 
     def add_card(self, card):
-        self.pack.append(card)
+        if type(card) == Card:
+            self.pack.append(card)
+        else:
+            raise ValueError('the parameter filled is not of type Card')
 
     def show(self):
         print(f'player name: {self.name}\ncards in hand:')

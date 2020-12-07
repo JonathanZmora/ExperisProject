@@ -28,10 +28,15 @@ class DeckOfCards:
         shuffle(self.deck)  # a python function, gets a list and shuffles the values
 
     def deal_one(self):
-        index = randint(0, len(self.deck) - 1)
-        card = self.deck[index]
-        del self.deck[index]
-        return card
+        try:
+            index = randint(0, len(self.deck) - 1)
+            card = self.deck[index]
+            del self.deck[index]
+            return card
+        except:
+            raise AttributeError('the deck is empty')
+
+
 
     def show(self):
         for i in self.deck:
