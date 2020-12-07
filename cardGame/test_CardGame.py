@@ -39,6 +39,10 @@ class TestCardGame(TestCase):
         with self.assertRaises(ValueError):
             CardGame('yoav', 'yonatan', -1)
 
+    def test__init__num_not_int(self):
+        with self.assertRaises(ValueError):
+            CardGame('yoav', 'yonatan', '1')
+
     def test_new_game_empty_pack(self):
         self.assertTrue(not self.game.player1.pack == [])
         self.assertTrue(not self.game.player2.pack == [])
@@ -83,6 +87,15 @@ class TestCardGame(TestCase):
         self.game.play_round(card1, card2)
         self.assertTrue(card1 in self.game.player1.pack and card2 in self.game.player1.pack)
 
-    def test_play_round_card1_invalid_parameter(self):
+    def test_play_round_card1_invalid_parameter1(self):
+
+        with self.assertRaises(ValueError):
+            self.game.play_round('card1', Card(1, 1))
+
+    def test_play_round_card1_invalid_parameter2(self):
+        with self.assertRaises(ValueError):
+            self.game.play_round(Card(1, 1), 'card2')
+
+    def test_play_round_card1_invalid_both_parameters(self):
         with self.assertRaises(ValueError):
             self.game.play_round('card1', 'card2')

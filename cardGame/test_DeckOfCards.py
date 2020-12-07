@@ -32,5 +32,3 @@ class TestDeckOfCards(TestCase):
         with self.assertRaises(AttributeError):
             self.deck_test.deal_one()
 
-    def test_show(self):
-        pass

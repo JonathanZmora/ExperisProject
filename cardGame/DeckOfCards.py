@@ -27,15 +27,19 @@ class DeckOfCards:
     def shuffle(self):
         shuffle(self.deck)  # a python function, gets a list and shuffles the values
 
+    # deal one function, returns a random card from the deck
+    # and takes the card out of the deck
     def deal_one(self):
-        try:
-            index = randint(0, len(self.deck) - 1)
-            card = self.deck[index]
-            del self.deck[index]
-            return card
-        except:
+        if not len(self.deck) == 0:  # checks if there are cards in the deck
+            index = randint(0, len(self.deck) - 1)  # picks a random index in the list
+            card = self.deck[index]  # saves the card in a variable
+            del self.deck[index]  # deletes the card from the list
+            return card  # returns the card
+        else:  # if the deck is empty, raises an error:
             raise AttributeError('the deck is empty')
 
+    # show function, returns the description of each card
+    # in the deck using the Card class str function
     def show(self):
-        for i in self.deck:
-            i.__str__()
+        for i in self.deck:  # for loop that runs on all of the cards in the deck
+            i.__str__()  # calls for the Card class str function that returns its description

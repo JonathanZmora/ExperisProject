@@ -30,6 +30,10 @@ class TestPlayer(TestCase):
         with self.assertRaises(ValueError):
             Player('yoav', -1)
 
+    def test__init__num_not_int(self):
+        with self.assertRaises(ValueError):
+            Player('yoav', '1')
+
     def test__init__too_much_cards(self):
         player = Player('yoav', 30)
         self.assertTrue(player.num_of_cards == 26)
