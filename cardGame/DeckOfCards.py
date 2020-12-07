@@ -36,8 +36,6 @@ class DeckOfCards:
         except:
             raise AttributeError('the deck is empty')
 
-
-
     def show(self):
         for i in self.deck:
             i.__str__()

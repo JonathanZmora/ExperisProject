@@ -23,10 +23,13 @@ class Player:
                 self.pack += [deck.deal_one()]
 
     def get_card(self):
-        index = randint(0, len(self.pack) - 1)
-        card = self.pack[index]
-        del self.pack[index]
-        return card
+        try:
+            index = randint(0, len(self.pack) - 1)
+            card = self.pack[index]
+            del self.pack[index]
+            return card
+        except:
+            raise AttributeError('the players pack is empty')
 
     def add_card(self, card):
         if type(card) == Card:

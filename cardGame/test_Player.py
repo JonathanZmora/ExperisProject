@@ -33,6 +33,11 @@ class TestPlayer(TestCase):
         card = self.yonatan.get_card()
         self.assertEqual(Card, type(card))
 
+    def test_get_card_empty_pack(self):
+        self.yonatan.pack = []
+        with self.assertRaises(AttributeError):
+            self.yonatan.get_card()
+
     def test_add_card_is_added(self):
         card = Card(10, 1)
         self.yonatan.add_card(card)
