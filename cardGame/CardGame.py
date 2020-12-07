@@ -13,10 +13,19 @@ class CardGame:
             self.player2.set_hand(self.deck)
 
     def __init__(self, name1, name2, num_of_cards=10):
-        self.deck = DeckOfCards()
-        self.player1 = Player(name1, num_of_cards)
-        self.player2 = Player(name2, num_of_cards)
-        self.new_game()
+        if type(name1) == str and type(name2) == str:
+            if not name1 == '' and not name2 == '':
+                if num_of_cards > 0:
+                    self.deck = DeckOfCards()
+                    self.player1 = Player(name1, num_of_cards)
+                    self.player2 = Player(name2, num_of_cards)
+                    self.new_game()
+                else:
+                    raise ValueError('the number of cards is less than 1')
+            else:
+                raise ValueError('one or both of the names is an empty string')
+        else:
+            raise ValueError('one or both of the names is not a string')
 
     def get_winner(self):
         if len(self.player1.pack) > len(self.player2.pack):

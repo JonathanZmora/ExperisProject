@@ -1,6 +1,6 @@
 from cardGame.CardGame import CardGame
 
-card_game = CardGame('yoav', 'yonatan')
+card_game = CardGame('yoav', 'yonatan', 10)
 card_game.player1.show()
 card_game.player2.show()
 for i in range(10):

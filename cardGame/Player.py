@@ -6,8 +6,13 @@ from cardGame.Card import Card
 class Player:
 
     def __init__(self, name, num_of_cards=10):
-        self.name = name
-        if num_of_cards > 26:
+        if type(name) == str:
+            self.name = name
+        else:
+            raise ValueError('Name parameter is not a string')
+        if num_of_cards <= 0:
+            raise ValueError('Name parameter is not a string')
+        elif num_of_cards > 26:
             num_of_cards = 26
         self.num_of_cards = num_of_cards
         self.pack = []

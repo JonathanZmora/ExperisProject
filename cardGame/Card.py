@@ -4,7 +4,14 @@ class Card:
     # gets the numeric value of the card and its suit
     # and places them in attributes value and suit
     def __init__(self, value, suit):
-        self.value = value
+        if type(value) == int and type(suit) == int:
+            if 0 < value < 15 and 0 < suit < 5:
+                self.value = value
+                self.suit = suit
+            else:
+                raise ValueError('value not in range (1, 15) or suit not in range (1, 5)')
+        else:
+            raise ValueError('value type or suit type is not int')
         self.suit = suit
 
     # str function, returns card description:

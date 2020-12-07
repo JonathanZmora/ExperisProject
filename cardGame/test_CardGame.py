@@ -8,6 +8,37 @@ class TestCardGame(TestCase):
     def setUp(self):
         self.game = CardGame('yonatan', 'yoav')
 
+    def test__init__working(self):
+        game = CardGame('yonatan', 'yoav', 15)
+        self.assertTrue(game.player1.name == 'yonatan' and game.player2.name)
+        self.assertTrue(game.player1.num_of_cards == 15 and game.player2.num_of_cards == 15)
+        self.assertTrue(len(game.player1.pack) == 15 and len(game.player2.pack) == 15)
+        self.assertTrue(len(game.deck.deck) == 22)
+
+    def test__init__name1_is_not_string(self):
+        with self.assertRaises(ValueError):
+            CardGame(765, 'yoav', 15)
+
+    def test__init__name2_is_not_string(self):
+        with self.assertRaises(ValueError):
+            CardGame('yoav', 765, 15)
+
+    def test__init__name1_is_empty(self):
+        with self.assertRaises(ValueError):
+            CardGame('', 'yoav', 15)
+
+    def test__init__name2_is_empty(self):
+        with self.assertRaises(ValueError):
+            CardGame('yoav', '', 15)
+
+    def test__init__num_is_zero(self):
+        with self.assertRaises(ValueError):
+            CardGame('yoav', 'yonatan', 0)
+
+    def test__init__num_is_negative(self):
+        with self.assertRaises(ValueError):
+            CardGame('yoav', 'yonatan', -1)
+
     def test_new_game_empty_pack(self):
         self.assertTrue(not self.game.player1.pack == [])
         self.assertTrue(not self.game.player2.pack == [])

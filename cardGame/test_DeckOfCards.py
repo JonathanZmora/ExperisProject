@@ -8,12 +8,15 @@ class TestDeckOfCards(TestCase):
     def setUp(self):
         self.deck_test = DeckOfCards()
 
+    def test__init__working(self):
+        self.assertTrue(len(self.deck_test.deck) == 52 and type(self.deck_test.deck) == list)
+
     def test_shuffle(self):
         list_of_cards = []
         for i in self.deck_test.deck:
             list_of_cards.append(i)
-        shuffle(list_of_cards)
-        self.assertListEqual(list_of_cards, self.deck_test.deck)
+        self.deck_test.shuffle()
+        self.assertTrue(not list_of_cards.__eq__(self.deck_test.deck))
 
     def test_deal_one_removes(self):
         list_1 = DeckOfCards()
