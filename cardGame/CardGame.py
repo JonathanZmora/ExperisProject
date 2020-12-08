@@ -9,7 +9,7 @@ class CardGame:
     # new game function, starts a game of cards by dealing cards to the two players
     def new_game(self):
         if not self.player1.pack == [] or not self.player2.pack == []:  # checks if the players' hands are empty
-            print("Error, the game has already started")  # if not, raises an error
+            print("Error, the game has already started")  # if not, prints an error
         else:  # if they are empty:
             self.deck.shuffle()  # shuffles the deck
             self.player1.set_hand(self.deck)  # deals cards to player 1
