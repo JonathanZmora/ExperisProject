@@ -87,41 +87,55 @@ class TestCardGame(TestCase):
     def test_get_winner_draw(self):
         self.assertEqual(self.game.get_winner(), 'None')
 
-    # tests that the play round function adds both
-    # cards thrown in the round to the losing players hand
+    # tests that the play round function adds both cards thrown in
+    # the round to the player with the smaller card value - player 2
     def test_play_round_player1_value_greater(self):
-        card1 = Card(10, 1)  # build card object 1 with greater value so it will win
-        card2 = Card(8, 2)  # build card object 2 with smaller value so it will lose
+        card1 = Card(10, 1)  # builds card object 1 with greater value so it will win
+        card2 = Card(8, 2)  # builds card object 2 with smaller value so it will lose
         self.game.play_round(card1, card2)  # uses the play round function with the built cards
         # checks if both cards were added to player 2 who had the smaller value in his card
         self.assertTrue(card1 in self.game.player2.pack and card2 in self.game.player2.pack)
 
+    # tests that the play round function adds both cards thrown in
+    # the round to the player with the smaller card value - player 1
     def test_play_round_player2_value_greater(self):
-        card1 = Card(8, 2)
-        card2 = Card(10, 1)
-        self.game.play_round(card1, card2)
+        card1 = Card(8, 2)  # builds card object 1 with smaller value so it will lose
+        card2 = Card(10, 1)  # builds card object 2 with greater value so it will win
+        self.game.play_round(card1, card2)  # uses the play round function with the built cards
+        # checks if both cards were added to player 1 who had the smaller value in his card
         self.assertTrue(card1 in self.game.player1.pack and card2 in self.game.player1.pack)
 
+    # tests that the play round function adds both cards thrown in
+    # the round to the player with the smaller card suit - player 2,
+    # if both players have the same card value
     def test_play_round_player1_suit_greater(self):
-        card1 = Card(10, 2)
-        card2 = Card(10, 1)
-        self.game.play_round(card1, card2)
+        card1 = Card(10, 2)  # builds card object 1 with a higher suit so it will win
+        card2 = Card(10, 1)  # builds card object 2 with a smaller suit so it will lose
+        self.game.play_round(card1, card2)  # uses the play round function with the built cards
+        # checks if both cards were added to player 2 who had the smaller suit in his card
         self.assertTrue(card1 in self.game.player2.pack and card2 in self.game.player2.pack)
 
+    # tests that the play round function adds both cards thrown in
+    # the round to the player with the smaller card suit - player 1,
+    # if both players have the same card value
     def test_play_round_player2_suit_greater(self):
-        card1 = Card(10, 1)
-        card2 = Card(10, 2)
-        self.game.play_round(card1, card2)
+        card1 = Card(10, 1)  # builds card object 1 with a smaller suit so it will lose
+        card2 = Card(10, 2)  # builds card object 2 with a higher suit so it will win
+        self.game.play_round(card1, card2)  # uses the play round function with the built cards
+        # checks if both cards were added to player 1 who had the smaller suit in his card
         self.assertTrue(card1 in self.game.player1.pack and card2 in self.game.player1.pack)
 
+    # tests the play round function when parameter 1 is not of type card
     def test_play_round_card1_invalid_parameter1(self):
         with self.assertRaises(ValueError):
-            self.game.play_round('card1', Card(1, 1))
+            self.game.play_round('card1', Card(1, 1))  # checks if an error is raised when using the function
 
+    # tests the play round function when parameter 2 is not of type card
     def test_play_round_card1_invalid_parameter2(self):
         with self.assertRaises(ValueError):
-            self.game.play_round(Card(1, 1), 'card2')
+            self.game.play_round(Card(1, 1), 'card2')  # checks if an error is raised when using the function
 
+    # tests the play round function when both parameters are not of type card
     def test_play_round_card1_invalid_both_parameters(self):
         with self.assertRaises(ValueError):
-            self.game.play_round('card1', 'card2')
+            self.game.play_round('card1', 'card2')  # checks if an error is raised when using the function
